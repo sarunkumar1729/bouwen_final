@@ -52,6 +52,14 @@ section.loginSection form button {
     letter-spacing: 1px;
     transition: 400ms;
 }
+
+#navbar a {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+
 section.loginSection form button:hover {
     background-color:#45968b ;
 }

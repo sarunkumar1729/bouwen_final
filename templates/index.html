@@ -12,7 +12,7 @@
 {% endblock head %}
 {% block content %}
     <!-- Popup-Form -->
-    <div class="formWrapper container-fluid" id="popupForm">
+    {% comment %} <div class="formWrapper container-fluid" id="popupForm">
         <div class="formContents row">
             <div class="col-12 col-md-5">
                 <form action="" name="popupRegForm" onsubmit="formValidate(event)">
@@ -52,7 +52,7 @@
                 <img src="{% static 'images/img-1.jpg' %}" alt="" class="img-fluid">
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
 <!-- Popup-Form ends here -->
 
 
@@ -78,10 +78,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 leftContentWrapper">
-                    <h2 class="text-md-start">A Institute That Makes You 
+                    <h2 class="text-md-start">Unlock Your Potential with Career Bouwen
                         <br>
-                        <span>an Expert</span></h2>
-                    <p>Career Bouwen has garnered praise from millions because of its solid curriculum and highly efficient instructors. One-on-one attention helps students clear their doubts and become confident day by day. Our outstanding personalised career support consultation aided numerous students in landing their dream jobs quickly.</p>
+                        <span>Where Opportunities Meet Ambition</span>
+                    </h2>
+                    <p>"Welcome to Career Bouwen – your gateway to career excellence. We connect ambitious individuals with exciting opportunities and empower employers to discover top talent effortlessly. With a user-friendly interface and advanced features, Career Bouwen is not just a job portal; it's your partner in building meaningful careers. Your next career move awaits – explore, connect, and thrive with Career Bouwen!"</p>
+
                     <h4>Enjoy an Excellent career with India’s One & Only Trusted Digital Skills Institute</h4>
                     <a href="{% url 'about' %}">
                         <button class="aboutBtn"><span>Know More</span></button>

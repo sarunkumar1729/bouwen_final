@@ -20,7 +20,7 @@ var swiper = new Swiper(".mySwiper", {
 
 
 // Form Validation
-let validateForm = (event) => {
+function validateForm() {
     let name = document.regForm.name.value.trim()
     let email = document.regForm.email.value.trim()
     let password = document.regForm.password.value.trim()
@@ -30,43 +30,43 @@ let validateForm = (event) => {
         document.querySelector('#nameError').innerHTML='name is required'
         document.regForm.name.style.borderColor='#e67a7a'
         document.regForm.name.focus()
-        event.preventDefault()
-        return false
+        // event.preventDefault()
+        return false;
     }
     if(email == "") {
         document.querySelector('#emailError').innerHTML='email is required'
         document.regForm.email.focus()
         document.regForm.email.style.borderColor='#e67a7a'
-        event.preventDefault()
-        return false
+        // event.preventDefault()
+        return false;
     }
     if(password == "") {
         document.querySelector('#passwordError').innerHTML='enter your password'
         document.regForm.password.style.borderColor='#e67a7a'
         document.regForm.password.focus()
-        event.preventDefault()
-        return false
+        // event.preventDefault()
+        return false;
     }
     if(password.length<6){
         document.querySelector('#passwordError').innerHTML='must have at least 6 characters'
         document.regForm.password1.style.borderColor='#e67a7a'
         document.regForm.password.focus()
-        event.preventDefault()
-        return false
+        // event.preventDefault()
+        return false;
     }
     if(password1==""){
         document.querySelector('#password1Error').innerHTML='please confirm the passord'
         document.regForm.password1.focus()
-        event.preventDefault()
-        return false
+        // event.preventDefault()
+        return false;
     }
     if(password1!=password) {
         document.querySelector('#password1Error').innerHTML='password is not matching'
         document.regForm.password1.focus()
-        event.preventDefault()
-        return false
+        // event.preventDefault()
+        return false;
     }
-    return true
+    return true;
 }
 
 

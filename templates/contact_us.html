@@ -46,30 +46,31 @@
                         <li><a href="https://www.instagram.com" target="_blank"><h5><i class="bi bi-instagram"></i></h5></a></li>
                     </ul>
                 </div>
-                <Form action="" name="contactForm" class="contactForm" onsubmit="validateForm(event)"  data-aos="fade-left" data-aos-delay="200" data-aos-duration='1000'>
+                <Form action="{% url 'sendmsg' %}" method='POST' name="contactForm" class="contactForm" onsubmit="validateForm(event)"  data-aos="fade-left" data-aos-delay="200" data-aos-duration='1000'>
+                    {% csrf_token %}
                     <h2>Connect with Us</h2>
                     <div class="formBox">
                         <div class="inputBox w50">
-                            <input type="text" name="fName" placeholder="">
+                            <input type="text" name="fName" placeholder="" required>
                             <span>First Name</span>
                             <p id="fnameError"></p>
                         </div>
                         <div class="inputBox w50 sdN">
-                            <input type="text" name="lName" placeholder="">
+                            <input type="text" name="lName" placeholder="" required>
                             <span>Last Name</span>
                         </div>
                         <div class="inputBox w50">
-                            <input type="email" name="email" placeholder="">
+                            <input type="email" name="email" placeholder="" required>
                             <span>Email Adress</span>
                             <p id="emailError"></p>
                         </div>
                         <div class="inputBox w50">
-                            <input type="number" name="phone" placeholder="">
+                            <input type="number" name="phone" placeholder="" required>
                             <span>Mobile Number</span>
                             <p id="phoneError"></p>
                         </div>
                         <div class="inputBox w100">
-                            <textarea name="message" id="" placeholder=""></textarea>
+                            <textarea name="message" id="" placeholder="" required></textarea>
                             <span>Write your message here..</span>
                         </div>
                         <div class="inputBox w100">

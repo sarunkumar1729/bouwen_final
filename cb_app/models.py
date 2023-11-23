@@ -36,5 +36,16 @@ class Applications(models.Model):
     candidate=models.ForeignKey(User,on_delete=models.CASCADE)
     job=models.ForeignKey(Jobs,on_delete=models.CASCADE)
     applied_date=models.DateTimeField(auto_now=True)
+
+
+class Saved_jobs(models.Model):
+    candidate=models.ForeignKey(User,on_delete=models.CASCADE)
+    job=models.ForeignKey(Jobs,on_delete=models.CASCADE)
     
 
+class Messages(models.Model):
+    first_name=models.CharField(max_length=50)
+    last_name=models.CharField(max_length=50)
+    email=models.EmailField(max_length=254)
+    mobile=models.CharField(max_length=50)
+    message=models.TextField()

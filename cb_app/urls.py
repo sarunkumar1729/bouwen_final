@@ -21,4 +21,8 @@ urlpatterns = [
     path('userprofile/<int:i>',views.user_profile,name='userprofile'),
     path('verify1',views.verify1,name='verify1'),
     path('verify2',views.verify2,name='verify2'),
+    path('applicationpage/<int:i>',views.application_page,name='application_page'),
+    path('sendmsg',views.send_msg,name='sendmsg'),
+    path('savejob/<int:i>',views.save_job,name='savejob'),
+    path('filtercandidates/<int:i>',views.filter_candidates,name='filtercandidates')
 ]

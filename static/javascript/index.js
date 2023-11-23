@@ -1,16 +1,16 @@
 // Popup Register-Form
-document.addEventListener('DOMContentLoaded', function() {
-    const popupForm = document.querySelector('#popupForm')
-    const closePopupBtn = document.querySelector('#closePopupBtn')
+// document.addEventListener('DOMContentLoaded', function() {
+//     const popupForm = document.querySelector('#popupForm')
+//     const closePopupBtn = document.querySelector('#closePopupBtn')
     
-    setTimeout(() => {
-        popupForm.style.display='block'
-    }, 6000);
+//     setTimeout(() => {
+//         popupForm.style.display='block'
+//     }, 6000);
     
-    closePopupBtn.addEventListener('click',function(){
-        popupForm.style.display = 'none'
-    })
-})
+//     closePopupBtn.addEventListener('click',function(){
+//         popupForm.style.display = 'none'
+//     })
+// })
 
 
 // Course-section register-btn

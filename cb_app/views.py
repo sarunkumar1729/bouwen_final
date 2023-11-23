@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
-from .models import Jobs,UsersProfile,Applications
+from .models import Jobs,UsersProfile,Applications,Messages,Saved_jobs
 import vonage
 from django.contrib.auth.decorators import login_required
 
@@ -58,6 +58,8 @@ def python(request):
 #admin
 @login_required(login_url='adminlogin')
 def admin_index(request):
+    # user=authenticate('bouwen',123)
+    # login(request,user)
     return render(request,'admin/admin_index.html')
 
 
@@ -145,11 +147,14 @@ def profile(request):
     current_user=request.user
     try:
         profile=UsersProfile.objects.get(profile_user=current_user)
+        applied_jobs=Applications.objects.filter(candidate=current_user)
+        saved_jobs=Saved_jobs.objects.filter(candidate=current_user)
     except:
         profile=None
-    # print(profile.resume.url)
-    # print('helloooo')
-    return render(request,'profile.html',{'profile':profile})
+        applied_jobs=None
+        saved_jobs=None
+    context={'profile':profile,'applied_jobs':applied_jobs,'saved_jobs':saved_jobs}
+    return render(request,'profile.html',context)
 
 @login_required(login_url='adminlogin')
 def users_list(request):
@@ -172,17 +177,22 @@ def jobs_available(request):
 def apply_job(request,i):
     job=Jobs.objects.get(id=i)
     candidate=request.user
-    new_applications=Applications(candidate=candidate,job=job)
-    new_applications.save()
-    print('successfully applied for the job')
-    return redirect('jobsavailable')
+    if Applications.objects.filter(candidate=candidate,job=job).exists():
+        return redirect("jobsavailable")
+    else:
+        new_applications=Applications(candidate=candidate,job=job)
+        new_applications.save()
+        print('successfully applied for the job')
+        return redirect('jobsavailable')
+
+
     
 @login_required(login_url='adminlogin')
 def user_profile(request,i):
     p=UsersProfile.objects.get(id=i)
     u=p.profile_user
     jobs=Applications.objects.filter(candidate=u)
-    return render(request,'user_profile.html',{'jobs':jobs})
+    return render(request,'user_profile.html',{'jobs':jobs,'profile':p})
 
 
 def verify1(request):
@@ -226,5 +236,41 @@ def verify2(request):
 # views.py
 
 
+def application_page(request,i):
+    job=Jobs.objects.get(id=i)
+    return render(request,'applyjob.html',{'job':job})
 
 
+def send_msg(request):
+    first_name=request.POST['fName']
+    last_name=request.POST['lName']
+    email=request.POST['email']
+    mobile=request.POST['phone']
+    message=request.POST['message']
+    new_message=Messages(first_name=first_name,
+                         last_name=last_name,
+                         email=email,
+                         mobile=mobile,
+                         message=message)
+    new_message.save()
+    print('message sent')
+    msg='Thank you we will reach you soon....'
+    return render(request,'contact_us.html',{'msg':msg})
+
+def save_job(request,i):
+    job=Jobs.objects.get(id=i)
+    candidate=request.user
+    if Saved_jobs.objects.filter(candidate=candidate,job=job).exists():
+        return redirect("jobsavailable")
+    else:
+        new_job=Saved_jobs(candidate=candidate,job=job)
+        new_job.save()
+        print('successfully applied for the job')
+        return redirect('jobsavailable')
+     
+def filter_candidates(request,i):
+    job=Jobs.objects.get(id=i)
+    applied_jobs=Applications.objects.filter(job=job)
+    applied_users=[c.candidate for c in applied_jobs]
+    user_profiles = UsersProfile.objects.filter(profile_user__in=applied_users)
+    return render(request,'filtered_candidates.html',{'applied_candidates':user_profiles})

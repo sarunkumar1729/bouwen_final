@@ -19,10 +19,33 @@
     .chg th{
         color: #fefefe;
     }
+    th,td{
+        padding:10px;
+    }
 </style>
 <h2 data-aos="fade-right" data-aos-delay="300" data-aos-duration='1000' >Applied Posts</h2>
 <br><br>
 
+<img src='{{profile.photo.url}}' width='100px'>
+
+<table>
+<tr>
+    <th>NAME</th>
+    <td>{{profile.fullname}}</td>
+</tr>
+<tr>
+    <th>PHONE 1</th>
+    <td>{{profile.phone1}}</td>
+</tr>
+<tr>
+    <th>PHONE 2</th>
+    <td>{{profile.phone2}}</td>
+</tr>
+<tr>
+    <th>EMAIL</th>
+    <td>{{profile.email}}</td>
+</tr>
+</table>
 
 <div class="table-responsive-lg ">
     <table class="table table-bordered ">

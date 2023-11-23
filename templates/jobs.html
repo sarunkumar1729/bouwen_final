@@ -11,8 +11,33 @@
     td,th{
         padding:10px;
     }
-    
 </style>
+
+
+{% if msg %}
+    <p class='text text-primary text-center'>{{msg}}</p>
+{% endif %}
+
+<div class="row">
+    {% for job in jobs %}
+        {% if forloop.counter0|divisibleby:3 %}
+            </div><div class="row">
+        {% endif %}
+        <div class="col-lg-4 col-12 mb-4 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <img src='https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/briefcase-512.png' width='100px'>
+                    <h5 class="card-title">{{ job.job_title }}</h5>
+                    <p class="card-text">{{ job.company_name }}</p>
+                    <a class='btn' href="{% url 'application_page' job.id %}">VIEW JOB</a>
+                    <a class='btn' href="{% url 'savejob' job.id %}">SAVE</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
     <section class="jobsAvail">
         <div class="container-fluid">
             <div class="row">
@@ -48,46 +73,8 @@
                             </tr>
                         {% endfor %}
                     </table> 
-
-
-                    <h2>Jobs Available</h2>
-                    <table style="width:100%">
-                        <tr>
-                            <th>Job Title</th>
-                            <th>Company Name</th>
-                            <th>Location</th>
-                            <th style="width: 6%;">FT/PT</th>
-                            <th>Description</th>
-                            <th style="width: 10%;">Experience Required</th>
-                            <th>Skills Required</th>
-                            <th style="width: 6%;">St. Salary</th>
-                            <th style="width: 6%;">Ed. Salary</th>
-                            <th>Languages</th>
-                            <th></th>
-                        </tr>
-                        {% for job in jobs %}
-                            <tr>
-                                <td>{{job.job_title}}</td>
-                                <td>{{job.company_name}}</td>
-                                <td>{{job.location}}</td>
-                                <td>{{job.mode}}</td>
-                                <td>{{job.description}}</td>
-                                <td>{{job.experience_required}}</td>
-                                <td>{{job.skills_required}}</td>
-                                <td>{{job.starting_salary}}</td>
-                                <td>{{job.ending_salary}}</td>
-                                <td>{{job.languages}}</td>
-                                <td><a class='btn btn-primary' href="{% url 'applyjob' job.id %}">APPLY</a></td>
-                            </tr>
-                        {% endfor %}
-                    </table> 
-
                 </div>
             </div>
         </div>
     </section>      
-    {% comment %} {% for j in applied_jobs %}
-        <h1>{{j.job.job_title}}</h1>
-        <h1>{{j.applied_date}}</h1>
-    {% endfor %} {% endcomment %}
 {% endblock content %}

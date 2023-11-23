@@ -45,26 +45,26 @@
                     <div class="registerWrapper">
                         <h2>Career Bouwen</h2>
                         <h1>Begin Your Educational Adventure</h1>
-                        <form action="{% url 'sign_up' %}" name="regForm" method='POST' onsubmit="validateForm(event)">
+                        <form action="{% url 'sign_up' %}" name="regForm" method='POST'>
                             {% csrf_token %}
                             <div class="inputBox">
                                 <label for="">Username</label>
-                                <input type="text" name="username" placeholder="">
+                                <input type="text" name="username" placeholder="" required>
                                 <small id="nameError"></small>
                             </div>
                             <div class="inputBox">
                                 <label for="">Email</label>
-                                <input type="email" name="email" placeholder="">
+                                <input type="email" name="email" placeholder="" required>
                                 <small id="emailError"></small>
                             </div>
                             <div class="inputBox">
                                 <label for="">Password</label>
-                                <input type="password" name="password" placeholder="">
+                                <input type="password" name="password" placeholder="" required>
                                 <small id="passwordError"></small>
                             </div>
                             <div class="inputBox">
                                 <label for="">Confirm Password</label>
-                                <input type="password" name="password1" placeholder="">
+                                <input type="password" name="password1" placeholder="" required>
                                 <small id="password1Error"></small>
                             </div>
                             <button type="submit">Register</button>
@@ -82,4 +82,7 @@
 {% block script %}
     <!-- Js -->
     <script src="{% static 'javascript/sign_up.js' %}"></script>
+    <script>
+
+    </script>
 {% endblock script %}
